@@ -3,6 +3,8 @@ package disruptor.comparison;
 public class Order {
 	
 	private long orderId;
+	private String name;
+	private double price;
 	
 	public Order() {}
 
@@ -14,7 +16,4 @@ public class Order {
 		this.orderId = orderId;
 	}
 
-	public Order(long orderId) {
-		this.orderId = orderId;
-	}
 }
