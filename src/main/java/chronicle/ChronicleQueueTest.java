@@ -1,4 +1,4 @@
-package os;
+package chronicle;
 
 import java.io.File;
 import java.nio.file.Files;
