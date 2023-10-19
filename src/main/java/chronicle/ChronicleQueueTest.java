@@ -1,12 +1,9 @@
 package chronicle;
 
-import java.io.File;
-import java.nio.file.Files;
-
-import net.openhft.chronicle.core.OS;
 import net.openhft.chronicle.queue.ChronicleQueue;
 import net.openhft.chronicle.queue.ExcerptAppender;
 import net.openhft.chronicle.queue.ExcerptTailer;
+import net.openhft.chronicle.queue.RollCycles;
 import net.openhft.chronicle.queue.impl.single.SingleChronicleQueueBuilder;
 
 /**
@@ -14,6 +11,8 @@ import net.openhft.chronicle.queue.impl.single.SingleChronicleQueueBuilder;
  * Excerpt – is a data container
    Appender – appender is used for writing data
    Trailer – is used for sequentially reading data
+   
+   FileChannel -> used to do mmap
  *
  */
 public class ChronicleQueueTest {
@@ -24,7 +23,7 @@ public class ChronicleQueueTest {
 		 * 写入/读取数据
 		 */
 		// ${java.io.tmpdir}/queue-dir/{today}.cq4
-		try (ChronicleQueue queue = SingleChronicleQueueBuilder.single("queue-dir").build()) {
+		try (ChronicleQueue queue = SingleChronicleQueueBuilder.single("queue-dir").rollCycle(RollCycles.FAST_DAILY).build()) {
 		    // Obtain an ExcerptAppender
 		    ExcerptAppender writer = queue.createAppender();
 
