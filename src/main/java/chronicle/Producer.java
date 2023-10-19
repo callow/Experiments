@@ -18,7 +18,7 @@ public class Producer extends Thread {
 			    ExcerptAppender writer = queue.createAppender();
 			    for(int i = 1; i <= 10000; i++) {
 			    	String c = "Customer-" + RANDOM.nextInt();
-				    writer.writeDocument(w -> w.write("data").text(c)); // Writes: {msg: Customer-1}
+				    writer.writeDocument(w -> w.write("data").text(c)); // Writes: {data: Customer-1}
 			    }
 			    System.out.println("  ");
 			}
