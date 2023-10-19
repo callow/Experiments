@@ -1,11 +1,5 @@
 package chronicle;
 
-import net.openhft.chronicle.queue.ChronicleQueue;
-import net.openhft.chronicle.queue.ExcerptAppender;
-import net.openhft.chronicle.queue.ExcerptTailer;
-import net.openhft.chronicle.queue.RollCycles;
-import net.openhft.chronicle.queue.impl.single.SingleChronicleQueueBuilder;
-
 /**
  * 
  * Excerpt – is a data container
@@ -23,25 +17,27 @@ public class ChronicleQueueTest {
 		 * 写入/读取数据
 		 */
 		// ${java.io.tmpdir}/queue-dir/{today}.cq4
-		try (ChronicleQueue queue = SingleChronicleQueueBuilder.single("queue-dir").rollCycle(RollCycles.FAST_DAILY).build()) {
-		    // Obtain an ExcerptAppender
-		    ExcerptAppender writer = queue.createAppender();
-
-		    // Writes: {msg: TestMessage}
-		    writer.writeDocument(w -> w.write("msg").text("TestMessage"));
-
-		    // Writes: TestMessage
-		    writer.writeText("TestMessage");
-
-		    ExcerptTailer reader = queue.createTailer();
-
-		    reader.readDocument(w -> System.out.println("msg: " + w.read(()->"msg").text()));
-		}
+//		try (ChronicleQueue queue = SingleChronicleQueueBuilder.single("queue-dir").rollCycle(RollCycles.FIVE_MINUTELY).build()) {
+//		    ExcerptAppender writer = queue.createAppender();
+//		    
+//		    for(int i = 0; i <= 10; i++) {
+//		    	String c = "Customer-" + i;
+//			    writer.writeDocument(w -> w.write("msg").text(c)); // Writes: {msg: Customer-1}
+//		    }
+//		    writer.close();
+//		    
+//		    ExcerptTailer reader = queue.createTailer("a");
+//		    while(!reader.isClosed()) {
+//		    	reader.readDocument(w -> System.out.println("msg: " + w.read(()->"msg").text()));
+//		    }    
+//		    
+//		    queue.close();
+//		    System.out.println("finish");
+//		}
 		
-		
-		
-		
-		
-		
+		System.out.println("producer start!");
+		new Producer().start();
+		System.out.println("consumer start!");
+		new Consumer().start();
 	}
 }

@@ -9,12 +9,12 @@ import com.lmax.disruptor.dsl.Disruptor;
 import com.lmax.disruptor.dsl.ProducerType;
 import com.lmax.disruptor.util.DaemonThreadFactory;
 
-public class Test {
+public class DisRuptorTest {
 
 	  public static void main(String[] args) {
 	        OrderFactory orderEventFactory = new OrderFactory();
 	        // 2^
-	        int ringBufferSize = 1024;
+	        int ringBufferSize = 1048576;
 	        
 	        // thread pool
 //	        ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
@@ -38,11 +38,12 @@ public class Test {
 	        // 4、produce
 	        RingBuffer<Order> ringBuffer = disruptor.getRingBuffer();
 	        OrderProducer producer = new OrderProducer(ringBuffer);
-	        for(long i = 0; i < 100;i ++){
-	            producer.sendData(i);
+	        int c = 0;
+	        while(true) {
+	        	producer.sendData(c++);
 	        }
 	        // 5. shutdown
-	        disruptor.shutdown();
+//	        disruptor.shutdown();
 
 	    }
 }
