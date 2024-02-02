@@ -62,7 +62,8 @@ public final class FixInitiator implements Application {
 
 	@Override
 	public void toApp(Message message, SessionID sessionId) throws DoNotSend {
-		System.out.println("toApp" + message.toString().replace("\u0001", " "));
+//		System.out.println("toApp " + message.toString().replace("\u0001", " "));
+		System.out.println("toApp " + message.toString());
 	}
 
 	/**
@@ -72,11 +73,13 @@ public final class FixInitiator implements Application {
 	@Override
 	public void fromApp(Message message, SessionID sessionId)
 			throws FieldNotFound, IncorrectDataFormat, IncorrectTagValue, UnsupportedMessageType {
-		System.out.println("from OZ/PrimXM" + message.toString().replace("\u0001", " "));
+		System.out.println("from OZ/PrimXM " + message.toString());
+//		System.out.println("from OZ/PrimXM" + message.toString().replace("\u0001", " "));
 		
 		// process OZ
 		
 		// process PrimeXM
+		RequestService.processPrimXM(message, sessionId);
 	}
 
 }

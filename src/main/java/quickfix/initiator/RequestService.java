@@ -70,7 +70,6 @@ public class RequestService {
 	
 	public static void processPrimXM(Message message, SessionID sessionID) {
         if (message instanceof MassQuote) {
-        	System.out.println("收到MassQuote");
             // 处理行情数据
             processMsg(message, sessionID);
             // 当收到行情消息后需要发送 Acknowledgement 消息
