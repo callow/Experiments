@@ -100,9 +100,9 @@ public class FixSessionInitializer {
 		public String mapping = "PrimeXM";
 		public String userName = "primexm_APP test_q";
 		public String password = "MF8N9hnFBSCG";
-		public String senderCompID = "Q004";
-		public String targetCompID = "XCD369";
-		public String socketConnectHost = "localhost";
+		public String senderCompID = "INITIATOR";
+		public String targetCompID = "ACCEPTOR";
+		public String socketConnectHost = "127.0.0.1";
 		public String socketConnectPort = "33166";
 		public String sessionQualifier = "OZ-001";
 	}
