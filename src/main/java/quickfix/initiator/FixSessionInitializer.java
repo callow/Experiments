@@ -102,7 +102,7 @@ public class FixSessionInitializer {
 		public String password = "MF8N9hnFBSCG";
 		public String senderCompID = "Q004";
 		public String targetCompID = "XCD369";
-		public String socketConnectHost = "pxmdemouk.primexm.com";
+		public String socketConnectHost = "localhost";
 		public String socketConnectPort = "33166";
 		public String sessionQualifier = "OZ-001";
 	}
