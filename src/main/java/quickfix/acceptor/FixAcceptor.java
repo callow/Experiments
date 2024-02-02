@@ -26,22 +26,22 @@ public class FixAcceptor extends MessageCracker implements Application{
 
 	@Override
 	public void onLogon(SessionID sessionId) {
-		System.out.println("onLogon" + sessionId.toString());
+		System.out.println("登录: " + sessionId.toString());
 	}
 
 	@Override
 	public void onLogout(SessionID sessionId) {
-		System.out.println("onLogout: " + sessionId.toString());
+		System.out.println("退出: " + sessionId.toString());
 	}
 
 	@Override
 	public void toAdmin(Message message, SessionID sessionId) {
-		System.out.println("toAdmin: " + message.toString());
+		System.out.println("发给客户端Admin: " + message.toString());
 	}
 
 	@Override
 	public void fromAdmin(Message message, SessionID sessionId)throws FieldNotFound, IncorrectDataFormat, IncorrectTagValue, RejectLogon {
-		System.out.println("fromAdmin: " + message);
+		System.out.println("收到客户端Admin: " + message);
         try {
             crack(message, sessionId);
         } catch (UnsupportedMessageType | FieldNotFound | IncorrectTagValue e) {
@@ -52,7 +52,7 @@ public class FixAcceptor extends MessageCracker implements Application{
 
 	@Override
 	public void toApp(Message message, SessionID sessionId) throws DoNotSend {
-		 System.out.println("toApp: " + message.toString());
+		 System.out.println("发给客户端App: " + message.toString());
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class FixAcceptor extends MessageCracker implements Application{
 	 */
 	@Override
 	public void fromApp(Message message, SessionID sessionId)throws FieldNotFound, IncorrectDataFormat, IncorrectTagValue, UnsupportedMessageType {
-		System.out.println("fromApp： " + message);
+		System.out.println("收到客户端App： " + message);
         crack(message, sessionId);
 	}
 	
@@ -72,9 +72,9 @@ public class FixAcceptor extends MessageCracker implements Application{
         try {
             String msgType = message.getHeader().getString(35);
             Session session = Session.lookupSession(sessionID);
+            System.out.println("收到客户端的消息： " + message);
             switch (msgType) {
 	            case MsgType.LOGON: // 登陆
-	            	
 	                session.logon();
 	                session.sentLogon();
 	                break;
@@ -82,7 +82,6 @@ public class FixAcceptor extends MessageCracker implements Application{
 	                session.generateHeartbeat();
 	                break;
 	            case MsgType.MARKET_DATA_REQUEST:
-	            	System.out.println("收到market data request请求");
 	            	session.generateHeartbeat();
 	            	break;
 	            default:

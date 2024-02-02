@@ -22,14 +22,14 @@ public final class FixInitiator implements Application {
 
 	@Override
 	public void onLogon(SessionID sessionId) {
-		System.out.println("-------------------Fix login successful---------------------" + sessionId.getSessionQualifier());
+		System.out.println("-------------------Fix 登录成功---------------------" + sessionId.getSessionQualifier());
 		System.out.println(sessionId.toString());
 		RequestService.subscribeBridgeProducts(PRODUCT,sessionId);
 	}
 
 	@Override
 	public void onLogout(SessionID sessionId) {
-		System.out.println("-------------------Fix logout successful---------------------" + sessionId.getSessionQualifier());
+		System.out.println("-------------------Fix 退出成功---------------------" + sessionId.getSessionQualifier());
 		System.out.println(sessionId.toString());
 	}
 
@@ -49,21 +49,21 @@ public final class FixInitiator implements Application {
                 throw new RuntimeException("Username and Password must be specified in configuration");
             }
 	      }
-		  System.out.println("toAdmin " + message.toString());
+		  System.out.println("发给Acceptor: " + message.toString());
 //		  System.out.println("toAdmin " + message.toString().replace("\u0001", " "));
 	}
 
 	@Override
 	public void fromAdmin(Message message, SessionID sessionId)
 			throws FieldNotFound, IncorrectDataFormat, IncorrectTagValue, RejectLogon {
-		System.out.println("fromAdmin " + message.toString());
+		System.out.println("收到Acceptor Admin: " + message.toString());
 //		System.out.println("fromAdmin " + message.toString().replace("\u0001", " "));
 	}
 
 	@Override
 	public void toApp(Message message, SessionID sessionId) throws DoNotSend {
 //		System.out.println("toApp " + message.toString().replace("\u0001", " "));
-		System.out.println("toApp " + message.toString());
+		System.out.println("发给Acceptor App: " + message.toString());
 	}
 
 	/**
@@ -73,7 +73,7 @@ public final class FixInitiator implements Application {
 	@Override
 	public void fromApp(Message message, SessionID sessionId)
 			throws FieldNotFound, IncorrectDataFormat, IncorrectTagValue, UnsupportedMessageType {
-		System.out.println("from OZ/PrimXM " + message.toString());
+		System.out.println("收到Acceptor App: from OZ/PrimXM " + message.toString());
 //		System.out.println("from OZ/PrimXM" + message.toString().replace("\u0001", " "));
 		
 		// process OZ
