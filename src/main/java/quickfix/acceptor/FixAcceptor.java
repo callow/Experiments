@@ -22,28 +22,26 @@ public class FixAcceptor extends MessageCracker implements Application{
 
 	@Override
 	public void onCreate(SessionID sessionId) {
-		System.out.println("服务器启动");
 	}
 
 	@Override
 	public void onLogon(SessionID sessionId) {
-		System.out.println("客户端登陆成功");
+		System.out.println("onLogon" + sessionId.toString());
 	}
 
 	@Override
 	public void onLogout(SessionID sessionId) {
-		System.out.println("客户端断开连接");
+		System.out.println("onLogout: " + sessionId.toString());
 	}
 
 	@Override
 	public void toAdmin(Message message, SessionID sessionId) {
-		System.out.println("发送会话消息: " + message.toString());
+		System.out.println("toAdmin: " + message.toString());
 	}
 
 	@Override
-	public void fromAdmin(Message message, SessionID sessionId)
-			throws FieldNotFound, IncorrectDataFormat, IncorrectTagValue, RejectLogon {
-		System.out.println("接收会话类型消息");
+	public void fromAdmin(Message message, SessionID sessionId)throws FieldNotFound, IncorrectDataFormat, IncorrectTagValue, RejectLogon {
+		System.out.println("fromAdmin: " + message);
         try {
             crack(message, sessionId);
         } catch (UnsupportedMessageType | FieldNotFound | IncorrectTagValue e) {
@@ -54,34 +52,41 @@ public class FixAcceptor extends MessageCracker implements Application{
 
 	@Override
 	public void toApp(Message message, SessionID sessionId) throws DoNotSend {
-		 System.out.println("发送业务消息: " + message.toString());
+		 System.out.println("toApp: " + message.toString());
 	}
 
+	/**
+	 * 接收到market data request
+	 */
 	@Override
-	public void fromApp(Message message, SessionID sessionId)
-			throws FieldNotFound, IncorrectDataFormat, IncorrectTagValue, UnsupportedMessageType {
-		System.out.println("接收业务消息时调用此方法");
+	public void fromApp(Message message, SessionID sessionId)throws FieldNotFound, IncorrectDataFormat, IncorrectTagValue, UnsupportedMessageType {
+		System.out.println("fromApp： " + message);
         crack(message, sessionId);
 	}
 	
 	/**
-	 * 收到客户端发来的不同的消息 干啥？
+	 * 收到客户端发来的不同的消息 干啥？ 业务逻辑实现统一写在此方法中
 	 */
 	@Override
 	protected void onMessage(Message message, SessionID sessionID) {
         try {
-            System.out.println("业务逻辑实现统一写在此方法中");
             String msgType = message.getHeader().getString(35);
             Session session = Session.lookupSession(sessionID);
-            System.out.println("服务器接收到用户信息订阅==" + msgType);
             switch (msgType) {
-            case MsgType.LOGON: // 登陆
-                session.logon();
-                session.sentLogon();
-                break;
-            case MsgType.HEARTBEAT: // 心跳
-                session.generateHeartbeat();
-                break;
+	            case MsgType.LOGON: // 登陆
+	            	
+	                session.logon();
+	                session.sentLogon();
+	                break;
+	            case MsgType.HEARTBEAT: // 心跳
+	                session.generateHeartbeat();
+	                break;
+	            case MsgType.MARKET_DATA_REQUEST:
+	            	System.out.println("收到market data request请求");
+	            	session.generateHeartbeat();
+	            	break;
+	            default:
+	            	break;
             }
 
         } catch (FieldNotFound e) {
