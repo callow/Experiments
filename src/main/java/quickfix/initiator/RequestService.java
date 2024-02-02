@@ -24,6 +24,8 @@ import quickfix.field.Symbol;
 import quickfix.field.TargetCompID;
 import quickfix.fix44.ExecutionReport;
 import quickfix.fix44.MarketDataRequest;
+import quickfix.fix44.MarketDataRequestReject;
+import quickfix.fix44.MarketDataSnapshotFullRefresh;
 import quickfix.fix44.MassQuote;
 import quickfix.fix44.MassQuoteAcknowledgement;
 import quickfix.fix44.component.Instrument;
@@ -67,6 +69,24 @@ public class RequestService {
 		
 	}
 	
+	public static void processOneZero(Message message, SessionID sessionID) {
+		if (message instanceof MarketDataSnapshotFullRefresh) {
+			processMsg((MarketDataSnapshotFullRefresh) message, sessionID);
+		} else if (message instanceof ExecutionReport) {
+			System.out.println("抛单返回:" + message);
+			try {
+//				executionReportHandler.handleExecutionReport((ExecutionReport) message);
+			} catch (Exception e) {
+			}
+		}else if(message instanceof MarketDataRequestReject){
+			try {
+//				backOfficeFeignClient.updateSubscribeStatus(((MarketDataRequestReject) message).getMDReqID().getValue(), SubscribeStatus.Rejected);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		}
+	}
 	
 	public static void processPrimXM(Message message, SessionID sessionID) {
         if (message instanceof MassQuote) {

@@ -77,6 +77,7 @@ public final class FixInitiator implements Application {
 //		System.out.println("from OZ/PrimXM" + message.toString().replace("\u0001", " "));
 		
 		// process OZ
+//		RequestService.processOneZero(message, sessionId);
 		
 		// process PrimeXM
 		RequestService.processPrimXM(message, sessionId);
