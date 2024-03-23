@@ -72,16 +72,20 @@ public class FixAcceptor extends MessageCracker implements Application{
         try {
             String msgType = message.getHeader().getString(35);
             Session session = Session.lookupSession(sessionID);
-            System.out.println("收到客户端的消息： " + message);
+            
             switch (msgType) {
 	            case MsgType.LOGON: // 登陆
+	            	System.out.println("收到客户端的 LOGON消息： " + message);
 	                session.logon();
 	                session.sentLogon();
+	                session.generateHeartbeat();
 	                break;
 	            case MsgType.HEARTBEAT: // 心跳
+	            	System.out.println("收到客户端 HEARTBEAT的消息： " + message);
 	                session.generateHeartbeat();
 	                break;
 	            case MsgType.MARKET_DATA_REQUEST:
+	            	System.out.println("收到客户端 MARKET_DATA_REQUEST的消息： " + message);
 	            	session.generateHeartbeat();
 	            	break;
 	            default:
