@@ -1,0 +1,22 @@
+2024-04-06 10:10:57,715 INFO main  (StartupInfoLogger.java:51)- Starting UBSApplication using Java 17.0.4 with PID 10808 (D:\Self-Experiments\experiments\target\classes started by USER in D:\Self-Experiments\experiments)
+2024-04-06 10:10:57,719 INFO main  (SpringApplication.java:636)- The following 1 profile is active: "local"
+2024-04-06 10:10:59,156 INFO main  (TomcatWebServer.java:114)- Tomcat initialized with port(s): 5090 (http)
+2024-04-06 10:10:59,173 INFO main  (DirectJDKLog.java:173)- Starting service [Tomcat]
+2024-04-06 10:10:59,174 INFO main  (DirectJDKLog.java:173)- Starting Servlet engine: [Apache Tomcat/10.1.1]
+2024-04-06 10:10:59,322 INFO main  (DirectJDKLog.java:173)- Initializing Spring embedded WebApplicationContext
+2024-04-06 10:10:59,323 INFO main  (ServletWebServerApplicationContext.java:291)- Root WebApplicationContext: initialization completed in 1521 ms
+2024-04-06 10:10:59,939 INFO main  (TomcatWebServer.java:226)- Tomcat started on port(s): 5090 (http) with context path ''
+2024-04-06 10:10:59,954 INFO main  (StartupInfoLogger.java:57)- Started UBSApplication in 3.006 seconds (process running for 3.823)
+2024-04-06 10:10:59,975 INFO main  (EmployeeStatisticService.java:69)- Count of names with length 4 is 4 
+2024-04-06 10:56:30,364 INFO main  (StartupInfoLogger.java:51)- Starting EmployeeStatisticServiceTest using Java 17.0.4 with PID 15928 (started by USER in D:\Self-Experiments\experiments)
+2024-04-06 10:56:30,367 INFO main  (SpringApplication.java:636)- The following 1 profile is active: "local"
+2024-04-06 10:56:31,739 INFO main  (StartupInfoLogger.java:57)- Started EmployeeStatisticServiceTest in 1.887 seconds (process running for 3.298)
+2024-04-06 10:56:32,288 INFO main  (EmployeeStatisticService.java:74)- Count of names with length 4 is 2 
+2024-04-06 10:58:53,068 INFO main  (StartupInfoLogger.java:51)- Starting EmployeeStatisticServiceTest using Java 17.0.4 with PID 444 (started by USER in D:\Self-Experiments\experiments)
+2024-04-06 10:58:53,070 INFO main  (SpringApplication.java:636)- The following 1 profile is active: "local"
+2024-04-06 10:58:54,486 INFO main  (StartupInfoLogger.java:57)- Started EmployeeStatisticServiceTest in 1.857 seconds (process running for 3.273)
+2024-04-06 10:58:55,037 INFO main  (EmployeeStatisticService.java:74)- Count of names with length 4 is 2 
+2024-04-06 10:59:32,425 INFO main  (StartupInfoLogger.java:51)- Starting EmployeeStatisticServiceTest using Java 17.0.4 with PID 17200 (started by USER in D:\Self-Experiments\experiments)
+2024-04-06 10:59:32,428 INFO main  (SpringApplication.java:636)- The following 1 profile is active: "local"
+2024-04-06 10:59:33,797 INFO main  (StartupInfoLogger.java:57)- Started EmployeeStatisticServiceTest in 1.87 seconds (process running for 3.423)
+2024-04-06 10:59:34,346 INFO main  (EmployeeStatisticService.java:74)- Count of names with length 4 is 2 
