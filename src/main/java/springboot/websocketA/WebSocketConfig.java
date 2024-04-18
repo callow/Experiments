@@ -7,7 +7,11 @@ import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-
+/**
+ * 
+ * 测试页面： http://www.websocket-test.com/ 
+ *
+ */
 @Configuration  
 @EnableWebSocket  
 public class WebSocketConfig implements WebSocketConfigurer {
