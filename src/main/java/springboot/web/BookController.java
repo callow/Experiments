@@ -1,11 +1,13 @@
 package springboot.web;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,7 +30,7 @@ public class BookController {
 	}
 	
 	@PostMapping("/book/delete")
-    public ResponseEntity<Boolean> addOrUpdate(HttpServletRequest request, @RequestParam("isbn") String isbn) {
+    public ResponseEntity<Boolean> delete(HttpServletRequest request, @RequestParam("isbn") String isbn) {
 		boolean isAdmin = (boolean) request.getAttribute("admin");
 		
 		if (isAdmin) {
@@ -38,6 +40,11 @@ public class BookController {
 			System.err.println("unauthorized access!");
 			return ResponseEntity.status(HttpStatusCode.valueOf(500)).body(false);
 		}
+	}
+	
+	@GetMapping("/book/find-title")
+    public ResponseEntity<List<Book>> findByTitle(@RequestParam("title") String title) {
+		return ResponseEntity.ok(MemoryNoSQLDatabase.findByTitle(title));
 	}
 	
    	@PostMapping("/login")

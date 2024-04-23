@@ -2,8 +2,10 @@ package springboot.utility;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import springboot.model.Author;
 import springboot.model.Book;
@@ -33,6 +35,10 @@ public class MemoryNoSQLDatabase {
 	
 	public static void delete(String isbn) {
 		BOOK_MAP.remove(isbn);
+	}
+	
+	public static List<Book> findByTitle(String title) {
+		return BOOK_MAP.values().stream().filter(i-> i.getTitle().equals(title)).collect(Collectors.toList());
 	}
 	
 	public static User getUserByName(String name) {
