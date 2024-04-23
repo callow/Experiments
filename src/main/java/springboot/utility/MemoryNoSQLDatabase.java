@@ -17,15 +17,17 @@ public class MemoryNoSQLDatabase {
 	public static final Map<String,User> USER_MAP = new HashMap<>();
 	
 	/**
-	 * prepopulate some data in the memory
+	 * prepopulate some data in the memory db
 	 */
 	static {
 		USER_MAP.put("wendel", new User("wendel","123", "admin", "wendel123"));
 		USER_MAP.put("john", new User("john","dsds", "john123", "john123"));
 		USER_MAP.put("lucy", new User("lucy","12323", "lucy323", "lucy123"));
 		
-		BOOK_MAP.put("12345", new Book("12345", "ring of thor", 
+		BOOK_MAP.put("12345XL", new Book("12345XL", "ring of thor", 
 				List.of(new Author("wendell",new Date()),new Author("susany",new Date())), 2032, 2.3, "fiction"));
+		BOOK_MAP.put("123sd5XL", new Book("123sd5XL", "essence of love", 
+				List.of(new Author("song",new Date()),new Author("susany23df",new Date())), 2034, 2.5, "romance"));
 		
 	}
 	
