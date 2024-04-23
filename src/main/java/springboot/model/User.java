@@ -1,37 +1,45 @@
 package springboot.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name = "user")
+/**
+ * all username are unique
+ */
 public class User {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
 	
-	@Column(name = "name")
 	private String name;
-
-	public Long getId() {
-		return id;
+	private String password;
+	private String userId;
+	private String nickname;
+	
+	public User(String name, String password, String userId, String nickname) {
+		this.name = name;
+		this.password = password;
+		this.userId = userId;
+		this.nickname = nickname;
 	}
-
-	public void setId(Long id) {
-		this.id = id;
+	public String getUserId() {
+		return userId;
 	}
-
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 	
 }
