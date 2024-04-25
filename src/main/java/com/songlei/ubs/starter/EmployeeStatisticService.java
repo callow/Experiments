@@ -50,27 +50,21 @@ public class EmployeeStatisticService {
 	public void processEmployeeWithAgeRange(List<Employee> employee, int ageFrom, int ageTo) {
 		LENGTH_4_NAME_COUNTER = 0;
 		try (FileWriter out = new FileWriter(csvPath);CSVPrinter printer = new CSVPrinter(out, CSVFormat.DEFAULT.withHeader(HEADERS))) {
-			employee.forEach(i -> {
-	    		try {
-	    			String name = i.getName();
-	    			int age = i.getAge();
-	    			
-	    			if(StringUtils.isNotBlank(name) && name.length() == 4) {
-	    				LENGTH_4_NAME_COUNTER++;
-	    			}
-	    			
-	    			if (age >= ageFrom && age <= ageTo) {
-	    				printer.printRecord(i.getName(), i.getAge());
-	    			}
-	    			
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-	    	});
+			for(Employee i : employee) {
+    			String name = i.getName();
+    			int age = i.getAge();
+    			
+    			if(StringUtils.isNotBlank(name) && name.length() == 4) {
+    				LENGTH_4_NAME_COUNTER++;
+    			}
+    			
+    			if (age >= ageFrom && age <= ageTo) {
+    				printer.printRecord(i.getName(), i.getAge());
+    			}
+			}
 	    } catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		
 		log.info("Count of names with length 4 is {} ", LENGTH_4_NAME_COUNTER);
 	}
 	
