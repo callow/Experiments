@@ -9,21 +9,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import springboot.model.User;
-import springboot.service.UserService;
+import springboot.model.GameSales;
+import springboot.service.GameSalesService;
 
 @Validated
 @RestController
-@RequestMapping("/user")
-public class UserController {
+public class GameSalesController {
 	
 	@Autowired
-	private UserService userService;
+	private GameSalesService userService;
 	
-   	@PostMapping("/create")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-   		userService.save(user);
-//      return ResponseEntity.ok(userService.findUser(user.getName()));
-   		return ResponseEntity.status(HttpStatus.CREATED).body(userService.findUser(user.getName()));
+   	@PostMapping("/import")
+    public ResponseEntity<GameSales> createUser(@RequestBody GameSales user) {
+		return null;
+   		
     }
 }
