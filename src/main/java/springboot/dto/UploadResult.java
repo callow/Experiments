@@ -4,7 +4,6 @@ import lombok.Data;
 
 @Data
 public class UploadResult {
-	private int totalCount;
-	private int successCount;
+	private boolean successCount;
 	private String failedMsg;
 }

@@ -1,8 +1,7 @@
 package springboot.model;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import lombok.Data;
+import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,6 +9,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import lombok.Data;
 
 
 @Data
@@ -46,6 +48,7 @@ public class GameSales {
 	private BigDecimal salesPrice;
 	
 	@Column(name = "date_of_sale")
-	private LocalDateTime salesDate;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date salesDate;
 
 }
