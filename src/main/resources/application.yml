@@ -22,7 +22,7 @@ spring:
        max-request-size: 100KB
 
 file:
-  location: /upload
+  location: "classpath:/uploadDir"
 
 server:
   port: 5090
