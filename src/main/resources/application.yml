@@ -16,6 +16,13 @@ spring:
     url: jdbc:mysql://127.0.0.1:3406/SongLei?autoReconnect=true&useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
     username: root
     password: root
+  servlet:
+     multipart:
+       max-file-size: 100KB
+       max-request-size: 100KB
+
+file:
+  location: "classpath:/uploadDir"
 
 server:
   port: 5090
