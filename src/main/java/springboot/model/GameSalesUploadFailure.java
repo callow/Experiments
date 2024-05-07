@@ -11,7 +11,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "game_sales_upload_failure")
-public class DataSalesUploadFailure {
+public class GameSalesUploadFailure {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,5 +20,6 @@ public class DataSalesUploadFailure {
 	@Column(name = "sales_id")
 	private Long salesId;
 	
+	@Column(name = "reason")
 	private String reason;
 }
