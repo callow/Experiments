@@ -23,7 +23,7 @@ public class GameSales {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "sales_id") // a running number starts with 1
+	@Column(name = "sales_id") // a running number starts with 1. here marked as unique identfier
 	private Long salesId;
 	
 	@Column(name = "game_no")  // an integer value between 1 to 100
