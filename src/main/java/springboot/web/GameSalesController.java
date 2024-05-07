@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import springboot.dto.GameSalesRequest;
-import springboot.dto.UploadResult;
 import springboot.model.GameSales;
 import springboot.service.GameSalesService;
 
@@ -29,8 +28,9 @@ public class GameSalesController {
 	 *  2.Design and create the necessary tables to track the progress of the CSV import.
 	 */
    	@PostMapping("/import")
-    public ResponseEntity<UploadResult> importSales(@RequestPart(value = "file") MultipartFile upoadFile) {
-		return ResponseEntity.ok(gsService.imports(upoadFile));
+    public ResponseEntity<String> importSales(@RequestPart(value = "file") MultipartFile upoadFile) {
+   		gsService.imports(upoadFile);
+		return ResponseEntity.ok("File received!");
     }
    	
    	/**
