@@ -1,11 +1,15 @@
 package springboot.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import springboot.dto.GameSalesRequest;
 import springboot.dto.UploadResult;
+import springboot.model.GameSales;
 import springboot.repo.GameSalesRepository;
 
 @Service
@@ -19,6 +23,8 @@ public class GameSalesService {
 	public UploadResult imports(MultipartFile file) {
 		return null;
 	}
-
-
+	
+	public Page<GameSales> getGameSales(GameSalesRequest request, Pageable pageable) {
+		return null;
+	}
 }
