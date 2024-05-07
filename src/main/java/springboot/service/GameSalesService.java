@@ -17,7 +17,7 @@ import springboot.repo.GameSalesRepository;
 public class GameSalesService {
 	
 	@Autowired
-	private GameSalesRepository gsRepo;
+	private GameSalesRepository gameSalesRepository;
 	
 
 	@Async
