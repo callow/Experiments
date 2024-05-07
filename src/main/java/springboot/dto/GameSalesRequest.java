@@ -11,6 +11,6 @@ public class GameSalesRequest {
 	private Date start;
 	private Date end;
 	
-	private BigDecimal salesPrice;
-	private boolean lessThan;
+	private BigDecimal salesPriceFrom;
+	private BigDecimal salesPriceTo;
 }

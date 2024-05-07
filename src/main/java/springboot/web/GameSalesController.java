@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import springboot.dto.GameSalesRequest;
+import springboot.dto.GameTotalSalesRequest;
+import springboot.dto.GameTotalSalesResponse;
 import springboot.model.GameSales;
 import springboot.service.GameSalesService;
 
@@ -43,7 +45,16 @@ public class GameSalesController {
 		return ResponseEntity.ok(gsService.getGameSales(req, pageable));
    	}
    	
-   	
+   	/**
+   	 * 1.The total number of games sold during a given period.
+	   2.The total sales generated (total sale_price) during a given period.
+       3.The total sales generated (total sale_price) during a given period with a given game_no.
+   	 */
+   	@PostMapping("/getTotalSales")
+   	public ResponseEntity<GameTotalSalesResponse> getTotalSales(@RequestBody GameTotalSalesRequest req) {
+		return ResponseEntity.ok(gsService.getTotalSales(req));
+   		
+   	}
    	
    	
 }
