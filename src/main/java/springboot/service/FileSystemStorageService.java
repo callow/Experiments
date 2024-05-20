@@ -2,11 +2,13 @@ package springboot.service;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Map;
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +17,14 @@ import org.springframework.boot.system.ApplicationHome;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.io.UrlResource;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
 
 import jakarta.annotation.PostConstruct;
 import springboot.exception.StorageException;
@@ -129,6 +136,38 @@ public class FileSystemStorageService {
 		catch (IOException e) {
 			throw new StorageException("Could not initialize storage", e);
 		}
+	}
+	
+	
+	@Async
+	public void bulkImport(MultipartFile file, long total) {
+        int counter = 0;
+        try (CSVReader reader = new CSVReaderBuilder(new InputStreamReader(file.getInputStream())).build()) {
+        	System.out.println("start to import");
+            String[] r;
+            Map<String, Integer> headerMap = null;
+            while ((r = reader.readNext()) != null) {
+                counter++;
+                if (counter == 1) {
+//                    headerMap = getHeaderPosition(r); 填充header
+                } else {
+                    if (!CollectionUtils.isEmpty(headerMap) && headerMap.size() == 7) {
+                        long vol = Long.parseLong(r[headerMap.get("volume")]);
+                        if (vol <= Integer.MAX_VALUE) {
+//                            runSqlByInterval(interval, r, headerMap);
+                        }
+                        total--;
+                        if (total % 1000 == 0) {
+                        	System.out.println("current leftover: " + total);
+                        }
+                    } else {
+                    	System.err.println("kline import header is missing: " + headerMap);
+                    }
+                }
+            }
+        } catch (Exception e) {
+        	System.err.println("import kline error");
+        }
 	}
 	
 }
