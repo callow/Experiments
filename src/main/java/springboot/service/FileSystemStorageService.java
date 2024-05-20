@@ -9,13 +9,17 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.stream.Stream;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.system.ApplicationHome;
 import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import jakarta.annotation.PostConstruct;
 import springboot.exception.StorageException;
 
 @Service
@@ -23,8 +27,25 @@ public class FileSystemStorageService {
 	
 	@Value("${file.location}")
 	private String location;
+	
+	@Autowired
+    ResourceLoader resourceLoader;
 
-	private final Path rootLocation = Paths.get("D:\\Self-Experiments\\experiments\\src\\main\\resources\\uploadDir");
+	private Path rootLocation;
+	
+	/**
+	 *  resourceLoader.getResource: 获取编译后的resource目录 D:\Self-Experiments\experiments\target\classes
+	 *  ApplicationHome: 获取编译前的路径
+	 */
+	@PostConstruct
+    private void postConstruct() {
+//		Resource resource = resourceLoader.getResource("classpath:uploadDir");  
+//		String path = resource.getFile().getPath();
+		ApplicationHome applicationHome = new ApplicationHome(this.getClass());
+		String path = applicationHome.getDir().getParentFile().getParentFile().getAbsolutePath()+ "\\src\\main\\resources\\" + location;
+		rootLocation = Paths.get(path);
+	}
+	
 
 	/**
 	 * 
@@ -109,4 +130,5 @@ public class FileSystemStorageService {
 			throw new StorageException("Could not initialize storage", e);
 		}
 	}
+	
 }

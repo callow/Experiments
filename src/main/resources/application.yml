@@ -13,7 +13,7 @@ spring:
         jdbc:
           '[time_zone]': UTC
   datasource:
-    url: jdbc:mysql://127.0.0.1:3406/SongLei?autoReconnect=true&useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://127.0.0.1:3306/SongLei?autoReconnect=true&useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=utf8
     username: root
     password: root
   servlet:
@@ -22,7 +22,7 @@ spring:
        max-request-size: -1
 
 file:
-  location: "classpath:/uploadDir"
+  location: "uploadDir"
 
 server:
   port: 5090
