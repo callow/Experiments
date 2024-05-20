@@ -18,8 +18,8 @@ spring:
     password: root
   servlet:
      multipart:
-       max-file-size: 100KB
-       max-request-size: 100KB
+       max-file-size: -1 #infinite size
+       max-request-size: -1
 
 file:
   location: "classpath:/uploadDir"

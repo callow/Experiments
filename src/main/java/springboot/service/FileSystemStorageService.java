@@ -24,7 +24,7 @@ public class FileSystemStorageService {
 	@Value("${file.location}")
 	private String location;
 
-	private final Path rootLocation = Paths.get(location);
+	private final Path rootLocation = Paths.get("D:\\Self-Experiments\\experiments\\src\\main\\resources\\uploadDir");
 
 	/**
 	 * 
@@ -93,6 +93,7 @@ public class FileSystemStorageService {
 	 */
 	public void deleteAll() {
 		FileSystemUtils.deleteRecursively(rootLocation.toFile());
+		System.out.println("successfully purge directory");
 	}
 	
 	/**
@@ -102,6 +103,7 @@ public class FileSystemStorageService {
 	public void init() {
 		try {
 			Files.createDirectories(rootLocation);
+			System.out.println("successfully create directory");
 		}
 		catch (IOException e) {
 			throw new StorageException("Could not initialize storage", e);
