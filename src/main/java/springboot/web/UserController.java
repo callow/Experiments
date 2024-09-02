@@ -26,4 +26,6 @@ public class UserController {
 //      return ResponseEntity.ok(userService.findUser(user.getName()));
    		return ResponseEntity.status(HttpStatus.CREATED).body(userService.findUser(user.getName()));
     }
+   	
+   	
 }
