@@ -1,4 +1,4 @@
-package security;
+package security.credentialstorage;
 
 import security.credentialstorage.implementation.windows.CredManagerBackedCredentialStore;
 import security.credentialstorage.model.StoredCredential;
